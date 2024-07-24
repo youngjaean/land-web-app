@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Listings</title>
+</head>
+<body>
+    <h1>Property Listings</h1>
+    
+    <form method="POST">
+        <select name="city" onchange="this.form.submit()">
+            <option value="">Select City</option>
+            {% for city in cities %}
+                <option value="{{ city }}" {% if city == selected_city %}selected{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select>
+        
+        {% if districts %}
+        <select name="district" onchange="this.form.submit()">
+            <option value="">Select District</option>
+            {% for district in districts %}
+                <option value="{{ district }}" {% if district == selected_district %}selected{% endif %}>{{ district }}</option>
+            {% endfor %}
+        </select>
+        {% endif %}
+    </form>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Area</th>
+            <th>City</th>
+            <th>District</th>
+        </tr>
+        {% for property in properties %}
+        <tr>
+            <td>{{ property.name }}</td>
+            <td>{{ property.price }}</td>
+            <td>{{ property.area }}</td>
+            <td>{{ property.city }}</td>
+            <td>{{ property.district }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
